@@ -1,0 +1,16 @@
+PODS:
+  - SwiftSoup (2.0.0)
+
+DEPENDENCIES:
+  - SwiftSoup
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftSoup
+
+SPEC CHECKSUMS:
+  SwiftSoup: 4fe21f65cdbfa3a40559047016b7962b88d29279
+
+PODFILE CHECKSUM: 845580c3d5d25b501bbb565f8d426e52da64b820
+
+COCOAPODS: 1.5.3

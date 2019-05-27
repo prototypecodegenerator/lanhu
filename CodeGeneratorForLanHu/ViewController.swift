@@ -26,7 +26,7 @@ class Item : Codable {
     var boardWidth:String?
     var boardColor:String?
     var backgroundColor:String?
-    var cornerRadio:String?
+    var cornerRadius:String?
 }
 
 class ViewController: NSViewController {
@@ -80,8 +80,9 @@ class ViewController: NSViewController {
                         self.item.fontBlod = self.parseAnnotationItem(elenment: elenment, itemTitle: "字重")
                         self.item.text = self.parseAnnotationItem(elenment: elenment, itemTitle: "内容")
                         self.item.textColor = self.getColor(elenment: elenment)
-                        self.item.type = .label
-                        
+                        if self.item.type == .view {
+                             self.item.type = .label
+                        }
                     } else if self.containText(elenment: elenment, contain: "中心边框") {
                         print("边框区域")
                         self.item.boardWidth = self.parseAnnotationItem(elenment: elenment, itemTitle: "粗细")
@@ -91,7 +92,7 @@ class ViewController: NSViewController {
                         self.item.backgroundColor = self.getColor(elenment: elenment)
                     } else if self.containText(elenment: elenment, contain: "圆角") {
                         print("试图的圆角大小")
-                        self.item.cornerRadio = self.parseAnnotationItem(elenment: elenment, itemTitle: "圆角")
+                        self.item.cornerRadius = self.parseAnnotationItem(elenment: elenment, itemTitle: "圆角")
                     }
                 }
                 self.completionParse()

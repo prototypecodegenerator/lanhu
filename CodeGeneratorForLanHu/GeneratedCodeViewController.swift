@@ -8,6 +8,10 @@
 
 import Cocoa
 
+var currentTemplate:Language.Template?
+
+var mustaches:[Item.ItemType:String] = [:]
+
 class GeneratedCodeViewController: NSViewController,NSTextFieldDelegate, NSTextViewDelegate {
     var context:[String:Any] = [:]
     @IBOutlet weak var prefixTextField: NSTextField! {
@@ -27,7 +31,7 @@ class GeneratedCodeViewController: NSViewController,NSTextFieldDelegate, NSTextV
         self.prefixTextField.isEnabled = self.context.keys.count > 0
         self.templateCodeTextView.isEditable = self.context.keys.count > 0
         self.generatedCodeTextView.isEditable = self.context.keys.count > 0
-        self.templateCodeTextView.string = UserDefaults.standard.object(forKey: self.templateCodeKey()) as? String ?? ""
+        self.templateCodeTextView.string =  mustaches[self.templateCodeKey()] ?? ""
         self.generatedCode()
     }
     
@@ -37,13 +41,17 @@ class GeneratedCodeViewController: NSViewController,NSTextFieldDelegate, NSTextV
         }
         rendering = rendering.replacingOccurrences(of: "        \n", with: "")
         self.generatedCodeTextView.string = rendering
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.declareTypes([.string], owner: nil)
+        pasteBoard.setString(rendering, forType: .string)
     }
     
-    func templateCodeKey() -> String {
-        guard let type = self.context["type"] as? Int else {
-            return "templateCodeTextView-0"
+    func templateCodeKey() -> Item.ItemType {
+        guard let type = self.context["type"] as? Int, let itemType = Item.ItemType(rawValue: type) else {
+            return .view
         }
-        return "templateCodeTextView-\(type)"
+        return itemType
     }
     
     //MARK: NSTextFieldDelegate
@@ -55,8 +63,6 @@ class GeneratedCodeViewController: NSViewController,NSTextFieldDelegate, NSTextV
     
     //MARK: NSTextViewDelegate
     func textDidChange(_ notification: Notification) {
-        UserDefaults.standard.set(self.generatedCodeTextView.string, forKey: self.templateCodeKey())
-        UserDefaults.standard.synchronize()
         self.generatedCode()
     }
     

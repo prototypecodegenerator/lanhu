@@ -597,6 +597,16 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem title="插件" id="eN5-Xi-Y4K">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="插件" id="dtK-6s-5Ub"/>
+                                        </menuItem>
+                                        <menuItem title="重新加载插件" id="ior-G0-ZaI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="reloadPlugin:" target="Voe-Tx-rLC" id="cPp-h0-MQm"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -675,7 +685,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CodeGeneratorForLanHu" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CodeGeneratorForLanHu" customModuleProvider="target">
+                    <connections>
+                        <outlet property="pluginMenu" destination="dtK-6s-5Ub" id="Ll1-8L-kR3"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

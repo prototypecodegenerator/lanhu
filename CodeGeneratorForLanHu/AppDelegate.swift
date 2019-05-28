@@ -6,15 +6,20 @@
 //  Copyright © 2019 zhang hang. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var thems:[Language] = []
     @IBOutlet weak var pluginMenu: NSMenu!
     
+    var windowController:NSWindowController = NSWindowController()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
+        self.windowController.showWindow(nil)
+        self.windowController.window?.makeKeyAndOrderFront(nil)
+        
         if let data = UserDefaults.standard.object(forKey: "currentTemplate") as? Data, let template = try? JSONDecoder().decode(Language.Template.self, from: data) {
             currentTemplate = template
         }
@@ -30,10 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func reloadPlugin() {
         self.thems.removeAll()
-        guard let user = ProcessInfo.processInfo.environment["USER"] else {
+        guard let user = ProcessInfo.processInfo.environment["HOME"] else {
             return
         }
-        let path = "/Users/\(user)/Library/Caches/CodeGenerator/Themes/"
+        let path = "\(user)/Library/Caches/CodeGenerator/Themes/"
         var isDirectory:ObjCBool = ObjCBool(booleanLiteral: false)
         guard FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) else {
             return

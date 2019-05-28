@@ -9,5 +9,6 @@ target 'CodeGeneratorForLanHu' do
 
   # Pods for CodeGeneratorForLanHu
   pod 'SwiftSoup'
+  pod 'SnapKit'
 #  pod 'GRMustache.swift'
 end

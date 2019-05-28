@@ -1,16 +1,20 @@
 PODS:
+  - SnapKit (5.0.0)
   - SwiftSoup (2.0.0)
 
 DEPENDENCIES:
+  - SnapKit
   - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - SnapKit
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftSoup: 4fe21f65cdbfa3a40559047016b7962b88d29279
 
-PODFILE CHECKSUM: 845580c3d5d25b501bbb565f8d426e52da64b820
+PODFILE CHECKSUM: ab15aab7d20c3ae47d10c9daf28e94a261fe4691
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.2
